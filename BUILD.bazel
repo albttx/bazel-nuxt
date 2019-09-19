@@ -1,0 +1,64 @@
+load("@build_bazel_rules_nodejs//:defs.bzl", "nodejs_binary")
+
+filegroup(
+    name = "nuxt-srcs",
+    srcs = glob(
+        [
+            "assets/**",
+            "components/**/*.vue",
+            "middleware/*.js",
+            "pages/**/*.vue",
+            "plugins/*.js",
+            "static/*",
+            "store/*.js",
+        ],
+        # specifically exclude test files
+        exclude = [
+        ],
+    ),
+)
+
+filegroup(
+    name = "node_modules",
+    srcs = glob(
+        [
+            "node_modules/**",
+        ],
+        exclude = [
+            "node_modules/**/examples/**",
+            # e.g. node_modules/@firebase/firestore/coverage/browser/HeadlessChrome 64.0.3282
+            "node_modules/@firebase/**/**/browser/* */**",
+            # e.g. node_modules/adm-zip/test/assets/attributes_test/New folder/hidden.txt
+            "node_modules/**/test/**",
+            # e.g. node_modules/xpath/docs/function resolvers.md
+            "node_modules/**/docs/**",
+            # e.g. node_modules/puppeteer/.local-chromium/mac-536395/chrome-mac/Chromium.app/Contents/Versions/66.0.3347.0/Chromium Framework.framework/Chromium Framework
+            "node_modules/**/.*/**",
+        ],
+    ),
+)
+
+filegroup(
+    name = "package_json",
+    srcs = ["package.json"],
+)
+
+nodejs_binary(
+    name = "nuxt",
+    data = [
+        "nuxt.config.js",
+        ":package_json",
+        ":nuxt-srcs",
+        # dependencies
+        # "@npm//nuxt",
+        # "@npm//nuxt/bin:nuxt",
+        # "@npm//@nuxtjs/axios",
+        # "@npm//@nuxtjs/vuetify",
+        # "@npm//@nuxtjs/auth"
+    ],
+    node_modules = ":node_modules",
+    # entry_point = "@npm//:node_modules/nuxt/bin/nuxt.js",
+    entry_point = ":node_modules/nuxt/bin/nuxt.js",
+    # templated_args = ["webview"],
+    visibility = ["//visibility:public"],
+)

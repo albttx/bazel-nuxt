@@ -1,20 +1,22 @@
 {
-  "name": "bazel-nuxt",
-  "version": "1.0.0",
-  "description": "My good Nuxt.js project",
-  "author": "Albert Le Batteux",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
-  },
-  "dependencies": {
-    "nuxt": "^2.0.0",
-    "@nuxtjs/axios": "^5.3.6"
-  },
-  "devDependencies": {
-    "@nuxtjs/vuetify": "^1.0.0"
-  }
+	"name": "bazel-nuxt",
+	"version": "1.0.0",
+	"description": "My good Nuxt.js project",
+	"author": "Albert Le Batteux",
+	"private": true,
+	"scripts": {
+		"dev": "nuxt",
+		"build": "nuxt build",
+		"start": "nuxt start",
+		"generate": "nuxt generate"
+	},
+	"dependencies": {
+		"nuxt": "^2.0.0",
+		"@nuxtjs/axios": "^5.3.6"
+	},
+	"devDependencies": {
+		"@nuxtjs/vuetify": "^1.0.0",
+		"node-sass": "^4.12.0",
+		"sass-loader": "^8.0.0"
+	}
 }
