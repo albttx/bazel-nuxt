@@ -1,8 +1,10 @@
 import colors from 'vuetify/es5/util/colors';
 
+// console.log('environment ', process.env);
+console.log("nuxt.config.js", __filename);
+
 export default {
-	mode: 'spa',
-	// mode: 'universal',
+	 mode: 'universal',
 	/*
   ** Headers of the page
   */

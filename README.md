@@ -24,15 +24,8 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 ## Build Setup (with bazel)
 
 ```bash
+# generate dist/ and .nuxt directories
+$ bazel build //:nuxt
+# run in production mode
 $ bazel run //:nuxt
 ```
-
-
-## Current bug
-
-### Yarn render
-
-![yarn render](https://github.com/albttx/bazel-nuxt/blob/master/assets/output-yarn.png?raw=true)
-
-### Bazel render
-![bazel render](https://github.com/albttx/bazel-nuxt/blob/master/assets/output-bazel.png?raw=true)
