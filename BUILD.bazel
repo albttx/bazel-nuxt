@@ -27,58 +27,29 @@ filegroup(
     srcs = ["package.json"],
 )
 
-# TEST 1
-## generate the dist/ directory
+# Build nuxt.js for production
 nuxt(
-    name = "nuxt_dist",
-    outs = [
-        ".nuxt",
-        "dist",
-    ],
+    name = ".nuxt",
     args = [
         "generate",
+        "--buildDir=$@",
     ],
     data = [
         ":nuxt-srcs",
         ":package_json",
         "@npm//:node_modules",
     ],
-    # output_dir = True,
+    output_dir = True,
 )
 
 ## run in production mode the generated directory
-nodejs_binary(
-    name = "nuxt",
+nuxt(
+    name = "nuxt_start",
     args = [
         "start",
     ],
     data = [
-        ":nuxt_dist",
+        ":.nuxt",
         "@npm//:node_modules",
     ],
-    entry_point = "@npm//:node_modules/nuxt/bin/nuxt.js",
 )
-
-# TEST 2 (not working either)
-# nodejs_binary(
-#     name = "nuxt",
-#     data = [
-#         "@npm//:node_modules",
-#     ],
-#     entry_point = "@npm//:node_modules/nuxt/bin/nuxt.js",
-# )
-
-# npm_package_bin(
-#     name = "build",
-#     args = [
-#         "generate",
-#     ],
-#     data = [
-#         ":nuxt-srcs",
-#         ":package_json",
-#         "@npm//:node_modules",
-#     ],
-#     output_dir = True,
-#     tool = ":nuxt",
-#     #outs = ["dist"],
-# )

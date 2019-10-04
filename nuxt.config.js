@@ -1,10 +1,13 @@
 import colors from 'vuetify/es5/util/colors';
 
 // console.log('environment ', process.env);
-console.log("nuxt.config.js", __filename);
+console.log('nuxt.config.js', __filename);
 
 export default {
-	 mode: 'universal',
+	mode: 'universal',
+	// Workaround https://cmty.app/nuxt/nuxt.js/issues/c9861
+	// Support a --buildDir option to the nuxt CLI
+	buildDir: process.argv.find((s) => s.startsWith('--buildDir=')).substr('--buildDir='.length),
 	/*
   ** Headers of the page
   */
